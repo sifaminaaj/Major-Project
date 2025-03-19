@@ -1,0 +1,625 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Agri Tech - Web Hosting HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+    
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">  
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'farmer/lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'farmer/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'farmer/css/bootstrap.min.css' %}" rel="stylesheet">
+    
+    <!-- Template Stylesheet -->
+    <link href="{% static 'farmer/css/style.css' %}" rel="stylesheet">
+    
+    <style>
+        .upload-label {
+            display: inline-block;
+            border: 2px dashed #007bff;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        
+        .upload-container {
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .icon {
+            margin-top:60px;
+            font-size: 36px;
+            display: block;
+            opacity:0.5;
+        }
+        
+        .text {
+            font-size: 18px;
+            margin-top: 5px; /* Adjust the margin as needed */
+        }
+        
+        #fileInput {
+            display: none;
+        }
+        
+        .image-preview {
+            position: relative;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        #previewImage {
+            max-width: 100%;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+        }
+        
+        
+        .upload-btn {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 30px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .upload-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+        
+        
+        <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="" class="navbar-brand p-0">
+                    <h1 class="m-0"><img src="{% static 'farmer/img/logo.png' %}" class="mx-3" alt="Agri Tech Logo">Agri Tech</h1>
+                    <!-- <img src="img/logo.png" alt="Logo"> -->
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0">
+                        <a href="{% url 'dashboard' %}" class="nav-item nav-link ">Dashboard</a>
+                        
+                        <div class="nav-item">
+                            <a href="{% url 'cropdisease' %}" class="nav-link">
+                              <span class="text-danger">Crop Detection</span>
+                            </a>
+                          </div>
+                          
+                          <div class="nav-item">
+                            <a href="{% url 'farmer_feedback' %}" class="nav-link">
+                              <span class="text-danger">Feedback</span>
+                            </a>
+                          </div>
+                          
+                          <div class="nav-item">
+                            <a href="{% url 'profile' %}" class="nav-link active">
+                              <span class="text-danger">My Profile</span>
+                            </a>
+                          </div>
+                          
+                        <a href="{% url 'chatbot' %}" class="nav-item nav-link">Chatbot</a>
+                    </div>
+                    
+                    <a href="{% url 'log_out' %}" class="btn btn-secondary py-2 px-4 ms-3">Log out</a>
+                </div>
+            </nav>
+            
+            <div class="container-xxl py-5 bg-primary hero-header mb-5">
+                <div class="container my-5 py-5 px-lg-5">
+                    <div class="row g-5">
+                        <div class="col-lg-5 text-center text-lg-start">
+                            <h1 class="display-4 text-white mb-4 animated slideInLeft">Crop Disease Detection</h1>
+                            <p class="text-white animated slideInLeft">Detect and diagnose crop diseases early with the help of Agri Tech's advanced tools and technologies. Our platform provides innovative solutions to identify and manage crop health, ensuring a higher yield for farmers.</p>
+                            <h1 class="text-white mb-4 animated slideInLeft">
+                                {% comment %} <small class="align-top fw-normal" style="font-size: 15px; line-height: 25px;">Join Now:</small> {% endcomment %}
+                                {% comment %} <span>Free</span> {% endcomment %}
+                            </h1>
+                            <a href="#" class="btn btn-secondary py-sm-3 px-sm-5 me-3 animated slideInLeft">Start Below</a>
+                        </div>
+                        <div class="col-lg-7 text-center text-lg-start">
+                            <img class="img-fluid animated zoomIn" src="{% static 'farmer/img/di1.png' %}" alt="Crop Disease Detection Hero Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+        <!-- Navbar & Hero End -->
+        
+        
+        <!-- Full Screen Search Start -->
+        <div class="modal fade" id="searchModal" tabindex="-1">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content" style="background: rgba(29, 40, 51, 0.8);">
+                    <div class="modal-header border-0">
+                        <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center justify-content-center">
+                        <div class="input-group" style="max-width: 600px;">
+                            <input type="text" class="form-control bg-transparent border-light p-3" placeholder="Type search keyword">
+                            <button class="btn btn-light px-4"><i class="bi bi-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Full Screen Search End -->
+        
+        
+        
+        <div class="upload-container row col-md-12">
+            <div class="col-md-6">
+                <h1 id="title">Upload File with Preview and Detect</h1>
+                
+                <label for="language-select">Choose Language:</label>
+                <select id="language-select">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    <option value="es">Spanish</option>
+                    <option value="fr">French</option>
+                    <option value="ta">Tamil</option>
+                    <option value="te">Telugu</option>
+                </select>
+                
+                <div class="upload-container">
+                    <form method="post" enctype="multipart/form-data" action="{% url 'cropdisease' %}">
+                        {% csrf_token %}
+                        <label for="fileInput" class="upload-label" id="fileLabel">
+                            <span class="icon">+</span>
+                            <span class="text" id="choose-file">Choose a file</span>
+                        </label>
+                        <input type="file" id="fileInput" accept="image/*" hidden name="image">
+                        <div>
+                            <button class="upload-btn" type="submit" id="upload-btn">Upload</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="result-container col-md-6">
+                {% if result %}
+                    <p id="prediction-text">The Image Belongs To :</p>
+                    <h4 id="result">
+                        <span style="margin-top: 20px; box-shadow: 5px 5px 8px grey; padding: 15px;">
+                            <strong>{{ result }}</strong>
+                        </span>
+                    </h4>
+                    
+                    <div>
+                        <h5 id="grow-title">How to Grow:</h5>
+                        <ul id="grow-tips"></ul>
+                    </div>
+                    
+                    <div>
+                        <h5 id="care-title">How to Take Care:</h5>
+                        <ul id="care-tips"></ul>
+                    </div>
+                    
+                    <div>
+                        <h5 id="pesticide-title">Suggested Pesticides:</h5>
+                        <ul id="pesticide-tips"></ul>
+                    </div>
+            </div>
+            
+            <div class="col-md-12">
+                <canvas id="metricsChart" width="400" height="200"></canvas>
+            </div>
+            
+            <script>
+                const translations = {
+                    en: {
+                        title: "Upload File with Preview and Detect",
+                        chooseFile: "Choose a file",
+                        upload: "Upload",
+                        predictionText: "The Image Belongs To :",
+                        growTitle: "How to Grow:",
+                        careTitle: "How to Take Care:",
+                        pesticideTitle: "Suggested Pesticides:",
+                        how_to_grow: [
+                            "Plant in well-drained, fertile soil.",
+                            "Ensure proper sunlight exposure for at least 6-8 hours a day.",
+                            "Maintain adequate spacing to allow for healthy growth."
+                        ],
+                        care: [
+                            "Water regularly but avoid overwatering to prevent root rot.",
+                            "Mulch the soil to retain moisture and prevent weed growth.",
+                            "Ensure proper pest management by inspecting leaves and stems regularly."
+                        ],
+                        pesticides: [
+                            "Use neem oil for natural pest control.",
+                            "Apply insecticidal soap for soft-bodied pests.",
+                            "Consider using a systemic insecticide for long-term protection."
+                        ]
+                    },
+                    hi: {
+                        title: "पूर्वावलोकन और पता लगाने के साथ फ़ाइल अपलोड करें",
+                        chooseFile: "फ़ाइल चुनें",
+                        upload: "अपलोड करें",
+                        predictionText: "छवि संबंधित है:",
+                        growTitle: "कैसे उगाएं:",
+                        careTitle: "कैसे देखभाल करें:",
+                        pesticideTitle: "सुझाए गए कीटनाशक:",
+                        how_to_grow: [
+                            "अच्छी जल निकासी वाली उपजाऊ मिट्टी में पौधे लगाएं।",
+                            "प्रति दिन कम से कम 6-8 घंटे की धूप सुनिश्चित करें।",
+                            "स्वस्थ विकास के लिए पर्याप्त दूरी बनाए रखें।"
+                        ],
+                        care: [
+                            "नियमित रूप से पानी दें लेकिन अधिक पानी से बचें।",
+                            "मिट्टी को नम रखने और खरपतवार को रोकने के लिए गीली घास डालें।",
+                            "छोड़ और तनों की नियमित रूप से जांच करके उचित कीट प्रबंधन सुनिश्चित करें।"
+                        ],
+                        pesticides: [
+                            "प्राकृतिक कीट नियंत्रण के लिए नीम का तेल उपयोग करें।",
+                            "कोमल कीड़ों के लिए कीटनाशक साबुन लगाएं।",
+                            "लंबी अवधि की सुरक्षा के लिए प्रणालीगत कीटनाशक का उपयोग करें।"
+                        ]
+                    },
+                    es: {
+                        title: "Subir archivo con vista previa y detección",
+                        chooseFile: "Elegir un archivo",
+                        upload: "Subir",
+                        predictionText: "La imagen pertenece a:",
+                        growTitle: "Cómo cultivar:",
+                        careTitle: "Cómo cuidar:",
+                        pesticideTitle: "Plaguicidas sugeridos:",
+                        how_to_grow: [
+                            "Plante en un suelo fértil y bien drenado.",
+                            "Asegúrese de que reciba luz solar durante al menos 6-8 horas al día.",
+                            "Mantenga un espacio adecuado para un crecimiento saludable."
+                        ],
+                        care: [
+                            "Riegue regularmente pero evite el exceso de riego para evitar la pudrición de las raíces.",
+                            "Aplique mantillo para retener la humedad y prevenir el crecimiento de maleza.",
+                            "Realice un control adecuado de plagas inspeccionando regularmente las hojas y los tallos."
+                        ],
+                        pesticides: [
+                            "Use aceite de neem para el control natural de plagas.",
+                            "Aplique jabón insecticida para plagas de cuerpo blando.",
+                            "Considere el uso de un insecticida sistémico para protección a largo plazo."
+                        ]
+                    },
+                    fr: {
+                        title: "Télécharger un fichier avec aperçu et détection",
+                        chooseFile: "Choisir un fichier",
+                        upload: "Télécharger",
+                        predictionText: "L'image appartient à :",
+                        growTitle: "Comment cultiver :",
+                        careTitle: "Comment prendre soin :",
+                        pesticideTitle: "Pesticides suggérés :",
+                        how_to_grow: [
+                            "Plantez dans un sol fertile et bien drainé.",
+                            "Assurez-vous d'une exposition au soleil d'au moins 6 à 8 heures par jour.",
+                            "Maintenez un espacement adéquat pour une croissance saine."
+                        ],
+                        care: [
+                            "Arrosez régulièrement, mais évitez de trop arroser pour éviter la pourriture des racines.",
+                            "Appliquez du paillis pour retenir l'humidité et prévenir la croissance des mauvaises herbes.",
+                            "Assurez une gestion appropriée des nuisibles en inspectant régulièrement les feuilles et les tiges."
+                        ],
+                        pesticides: [
+                            "Utilisez de l'huile de neem pour un contrôle naturel des nuisibles.",
+                            "Appliquez du savon insecticide pour les nuisibles à corps mou.",
+                            "Envisagez l'utilisation d'un insecticide systémique pour une protection à long terme."
+                        ]
+                    },
+                    ta: {
+                        title: "முன்னோட்டம் மற்றும் கண்டறிதலுடன் கோப்பை பதிவேற்றவும்",
+                        chooseFile: "கோப்பை தேர்ந்தெடுக்கவும்",
+                        upload: "பதிவேற்றவும்",
+                        predictionText: "படம் இது சார்ந்தது :",
+                        growTitle: "எப்படி வளர்க்கலாம் :",
+                        careTitle: "எப்படி பராமரிக்கலாம் :",
+                        pesticideTitle: "பரிந்துரைக்கப்பட்ட நச்சுப்பொருட்கள் :",
+                        how_to_grow: [
+                            "நன்றாக நீரழிவு ஏற்படும் மற்றும் குறைந்தளவு மண் கொண்ட இடத்தில் பயிர் வளர்க்கவும்.",
+                            "அரசுகளுக்கு குறைந்தது 6-8 மணி நேரத்திற்கு பசுமை வெளிச்சத்தை உறுதி செய்யவும்.",
+                            "ஆரோக்கியமான வளர்ச்சிக்கான போதுமான இடைவெளி வைக்கவும்."
+                        ],
+                        care: [
+                            "வளர்ச்சி பாதிக்காதபடி தண்ணீர் ஊற்றினாலும், அதிகமாக நீர்க்காய்ச்சல் செய்வதை தவிர்க்கவும்.",
+                            "தண்ணீரின் போக்கை தடுக்க மற்றும் பயிர்களை பாதுகாக்க பூசிப்பெட்டுகளை பயன்படுத்தவும்.",
+                            "தான், காய் மற்றும் சிதைவு உறுதி செய்யும்போது பராமரிப்பதை நன்கு கவனிக்கவும்."
+                        ],
+                        pesticides: [
+                            "நீம் எண்ணெய் பிழைகள் சரியாக தயாரிப்பதற்காக பயன்படுத்தவும்.",
+                            "பிளைவுகளின் உடலை நசுக்குரிய நச்சுப்பொருளைக் கொண்டு பாஸிலிக்கிறது.",
+                            "நீங்கள் முழுக்க பயன்படுத்த விரும்புகிறதற்கு, சிறந்த முடிவு தரவேண்டும்."
+                        ]
+                    },
+                    te: {
+                        title: "ప్రీవ్యూ మరియు కనుగొనడంతో ఫైల్ అప్‌లోడ్ చేయండి",
+                        chooseFile: "ఫైల్‌ని ఎంచుకోండి",
+                        upload: "అప్‌లోడ్ చేయండి",
+                        predictionText: "ఈ చిత్రానికి సంబంధించినది :",
+                        growTitle: "ఎలా పెంచాలి :",
+                        careTitle: "ఎలా సంరక్షించాలి :",
+                        pesticideTitle: "పరిశీలించిన పురుగుమందులు :",
+                        how_to_grow: [
+                            "చక్కగా నీరు పారిపోయే, పౌష్ఠికమైన మట్టిలో మొక్కలు నాటండి.",
+                            "ప్రతిరోజూ కనీసం 6-8 గంటల పాటు సూర్యకాంతి అందించడం ఖాయంగా చేయండి.",
+                            "ఆరోగ్యకరమైన పెరుగుదలకు సరైన దూరం ఉంచండి."
+                        ],
+                        care: [
+                            "నియమితంగా నీళ్ళు పోశా, అయితే అధిక నీటినీళ్ళు మట్టిపొత్తులు ఏర్పడకుండా నివారించండి.",
+                            "గడ్డి వేసుకోవడం ద్వారా నేల పొరను తేమగా ఉంచి, కలుపు చెట్లు నివారించవచ్చు.",
+                            "పంటలను రక్షించడానికి మరియు మంచి సలహా ఇవ్వడానికి పసిపద్ధతులు మరియు మూలాలు తరచూ పరిశీలించండి."
+                        ],
+                        pesticides: [
+                            "పురుగుల నివారణ కోసం నీమ్ ఆయిల్ ఉపయోగించండి.",
+                            "సాఫ్ట్ బాడీడ్ పురుగుల కోసం ఇన్సెక్టిసైడల్ సబ్బు ఉపయోగించండి.",
+                            "దీర్ఘకాలిక రక్షణ కోసం సిస్టెమిక్ ఇన్సెక్టిసైడ్ ఉపయోగించండి."
+                        ]
+                    }
+                };
+        
+                function updateLanguage(language) {
+                    document.getElementById("title").textContent = translations[language].title;
+                    document.getElementById("choose-file").textContent = translations[language].chooseFile;
+                    document.getElementById("upload-btn").textContent = translations[language].upload;
+                    if (document.getElementById("prediction-text")) {
+                        document.getElementById("prediction-text").textContent = translations[language].predictionText;
+                        document.getElementById("grow-title").textContent = translations[language].growTitle;
+                        document.getElementById("care-title").textContent = translations[language].careTitle;
+                        document.getElementById("pesticide-title").textContent = translations[language].pesticideTitle;
+                        
+                        let growList = document.getElementById("grow-tips");
+                        growList.innerHTML = "";
+                        translations[language].how_to_grow.forEach(item => {
+                            let li = document.createElement("li");
+                            li.textContent = item;
+                            growList.appendChild(li);
+                        });
+        
+                        let careList = document.getElementById("care-tips");
+                        careList.innerHTML = "";
+                        translations[language].care.forEach(item => {
+                            let li = document.createElement("li");
+                            li.textContent = item;
+                            careList.appendChild(li);
+                        });
+        
+                        let pesticideList = document.getElementById("pesticide-tips");
+                        pesticideList.innerHTML = "";
+                        translations[language].pesticides.forEach(item => {
+                            let li = document.createElement("li");
+                            li.textContent = item;
+                            pesticideList.appendChild(li);
+                        });
+                    }
+                }
+        
+                document.getElementById("language-select").addEventListener("change", function() {
+                    updateLanguage(this.value);
+                });
+        
+                updateLanguage("en");
+            </script>
+        </div>
+        
+        
+        
+            
+                <canvas  id="metricsChart" width="400" height="200"></canvas>
+                <script>
+                    const metricsData = {
+                        labels: ['Accuracy', 'Precision', 'Recall', 'F1 Score'],
+                        datasets: [{
+                            label: 'Model Metrics',
+                            backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)', 'rgba(75, 192, 192, 0.5)'],
+                            borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
+                            borderWidth: 1,
+                            data: [98.9, 70.75, 90.80, 87.6]
+                        }]
+                    };
+                    const ctx = document.getElementById('metricsChart').getContext('2d');
+                    const myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: metricsData,
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                </script>
+                
+                {% endif %}
+            </div>
+            
+            
+        </div>    <!-- Pricing Start -->
+        
+        <!-- Footer Start -->
+        <div class="container-fluid bg-primary text-white footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5 px-lg-5">
+                <div class="row gy-5 gx-4 pt-5">
+                    <div class="col-12">
+                        <h2 class="fw-bold text-white mb-4">Agri Tech</h2>
+                        
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="row gy-5 g-4">
+                            <div class="col-md-6">
+                                <h5 class="fw-bold text-white mb-4">Shortcuts</h5>
+                                <a class="btn btn-link" href="{% url 'dashboard' %}">Dashboard</a>
+                                <a class="btn btn-link" href="{% url 'cropdisease' %}">Crop Disease Detection</a>
+                                <a class="btn btn-link" href="{% url 'chatbot' %}">Chatbot</a>
+                                
+                                
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="fw-bold text-white mb-4">Useful Links</h5>
+                                <a class="btn btn-link" href="{% url 'farmer_feedback' %}">Feedback</a>
+                                <a class="btn btn-link" href="{% url 'profile' %}">My Profile</a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <h5 class="fw-bold text-white mb-4">Get In Touch</h5>
+                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i> Gayatri Nagar Hyderabad</p>
+                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i> 99593 82287</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@codeleaf.in</p>
+                        
+                    </div>
+                    <div class="col-md-6 col-lg-3 mt-lg-n5">
+                        <div class="bg-light rounded" style="padding: 30px;">
+                            <img class="img-fluid animated zoomIn" src="{% static 'farmer/img/farmer3.webp' %}" alt="Agri Tech Hero Image">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container px-lg-5">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            &copy; <a class="border-bottom" href="#">Agri Tech</a>, All Right Reserved. 
+                            
+                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                            Designed By <a class="border-bottom" href="https://codeleaf.in" target="_blank">codeleaf</a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+        
+        <script>
+            document.getElementById('fileInput').addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                const fileLabel = document.getElementById('fileLabel');
+                
+                if (file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        fileLabel.style.backgroundImage = `url(${e.target.result})`;
+                    };
+                    
+                    reader.readAsDataURL(file);
+                } else {
+                    fileLabel.style.backgroundImage = '';
+                }
+            });
+        </script>
+        
+        
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        {% if messages %}              
+        {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+        <script>swal({
+            title: "Warning!",
+            text: "{{message}}",
+            icon: "warning",
+            button: "OK",
+        });
+    </script>
+    
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+    <script>swal({
+        title: "Info :)",
+        text: "{{message}}",
+        icon: "info",
+        button: "OK",
+    });
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+<script>swal({
+    title: "Error :)",
+    text: "{{message}}",
+    icon: "error",
+    button: "OK",
+});
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+<script>swal({
+    title: "Success :)",
+    text: "{{message}}",
+    icon: "success",
+    button: "OK",
+});
+</script>
+{% endif %}              
+{% endfor %} 
+{% endif %}
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-secondary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+</div>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'farmer/lib/wow/wow.min.js' %}"></script>
+
+<script src="{% static 'farmer/lib/easing/easing.min.js' %}"></script>
+
+<script src="{% static 'farmer/lib/waypoints/waypoints.min.js' %}"></script>
+
+<script src="{% static 'farmer/lib/counterup/counterup.min.js' %}"></script>
+
+<script src="{% static 'farmer/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+
+<!-- Template Javascript -->
+<script src="{% static 'farmer/js/main.js' %}"></script>
+
+</body>
+
+</html>

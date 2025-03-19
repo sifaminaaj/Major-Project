@@ -1,0 +1,780 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Agri Tech - Web Hosting HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+    
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">  
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'farmer/lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'farmer/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'farmer/css/bootstrap.min.css' %}" rel="stylesheet">
+    
+    <!-- Template Stylesheet -->
+    <link href="{% static 'farmer/css/style.css' %}" rel="stylesheet">
+    <style>
+        .navbar-nav a.nav-item.nav-link,
+        .navbar-nav .nav-item.dropdown a.nav-link.dropdown-toggle {
+            color: black !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+        
+        
+        <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+                <a href="" class="navbar-brand p-0">
+                    <h1 class="m-0 text-primary"><img src="{% static 'farmer/img/logo.png' %}" class="mx-3" alt="Agri Tech Logo">Agri Tech</h1>
+                    <!-- <img src="img/logo.png" alt="Logo"> -->
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0">
+                        <a href="{% url 'dashboard' %}" class="nav-item nav-link active">Dashboard</a>
+                        
+                        <div class="nav-item">
+                            <a href="{% url 'cropdisease' %}" class="nav-link">
+                              <span class="text-danger">Crop Detection</span>
+                            </a>
+                          </div>
+                          
+                          <div class="nav-item">
+                            <a href="{% url 'farmer_feedback' %}" class="nav-link">
+                              <span class="text-danger">Feedback</span>
+                            </a>
+                          </div>
+                          
+                          <div class="nav-item">
+                            <a href="{% url 'profile' %}" class="nav-link active">
+                              <span class="text-danger">My Profile</span>
+                            </a>
+                          </div>
+                          
+                        <a href="{% url 'chatbot' %}" class="nav-item nav-link">Chatbot</a>
+                    </div>
+                    
+                    <a href="{% url 'log_out' %}" class="btn btn-secondary py-2 px-4 ms-3">Log out</a>
+                </div>
+            </nav>
+            
+            <div class="container-xxl py-5  hero-header mb-5">
+                
+            </div>
+            
+        </div>
+        <!-- Navbar & Hero End -->
+        <style>
+            /* styles.css */
+
+
+
+/* Container for the cards */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Individual card styling */
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transform: translateY(10px);
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+/* Image styling */
+.crop-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Content section of the card */
+.card-content {
+    padding: 20px;
+    color: #333;
+}
+
+.card-content h2 {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.card-content p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.card-content p strong {
+    font-weight: bold;
+}
+
+.card-content p em {
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+/* Animation for fade-in */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Adding a delay for each card */
+.card:nth-child(1) {
+    animation-delay: 0s;
+}
+.card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.card:nth-child(3) {
+    animation-delay: 0.4s;
+}
+.card:nth-child(4) {
+    animation-delay: 0.6s;
+}
+/* Add more delay styles as needed for more cards */
+
+        </style>
+        
+        <!-- Full Screen Search Start -->
+        <div class="modal fade" id="searchModal" tabindex="-1">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content" style="background: rgba(29, 40, 51, 0.8);">
+                    <div class="modal-header border-0">
+                        <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center justify-content-center">
+                        <div class="input-group" style="max-width: 600px;">
+                            <input type="text" class="form-control bg-transparent border-light p-3" placeholder="Type search keyword">
+                            <button class="btn btn-light px-4"><i class="bi bi-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Full Screen Search End -->
+        <!-- crop_predictions.html -->
+
+        <div class="cards-container">
+            {% for prediction in predictions %}
+            <div class="card">
+                <img src="{{ prediction.uploaded_image.url }}" alt="Crop Image" class="crop-image">
+                <div class="card-content">
+                    <h2>{{ prediction.plant_type }}</h2>
+                    <p><strong>Growth Tips:</strong> <span class="growth-tips">{{ prediction.growth_tips }}</span></p>
+                    <p><strong>Care Tips:</strong> <span class="care-tips">{{ prediction.care_tips }}</span></p>
+                    <p><strong>Pesticide Suggestions:</strong> <span class="pesticide-suggestions">{{ prediction.pesticide_suggestions }}</span></p>
+                    <p><em>Timestamp: {{ prediction.timestamp }}</em></p>
+        
+                    <button class="show-btn" onclick="showPopup(this)">Show</button>
+                    <button class="download-btn" onclick="downloadContent(this)">Download</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Popup Modal -->
+        <div id="popup-modal" class="popup-modal">
+            <div class="popup-content">
+                <span class="close-btn" onclick="closePopup()">×</span>
+                <h2>Plant Tips</h2>
+                <p id="popup-growth-tips"><strong>Growth Tips:</strong> </p>
+                <p id="popup-care-tips"><strong>Care Tips:</strong> </p>
+                <p id="popup-pesticide-suggestions"><strong>Pesticide Suggestions:</strong> </p>
+                <button class="close-modal-btn" onclick="closePopup()">Close</button>
+            </div>
+        </div>
+        
+        <script>
+            function showPopup(button) {
+                var cardContent = button.closest('.card-content');
+        
+                var growthTips = cardContent.querySelector('.growth-tips').textContent;
+                var careTips = cardContent.querySelector('.care-tips').textContent;
+                var pesticideSuggestions = cardContent.querySelector('.pesticide-suggestions').textContent;
+        
+                document.getElementById('popup-growth-tips').textContent = 'Growth Tips: ' + growthTips;
+                document.getElementById('popup-care-tips').textContent = 'Care Tips: ' + careTips;
+                document.getElementById('popup-pesticide-suggestions').textContent = 'Pesticide Suggestions: ' + pesticideSuggestions;
+        
+                document.getElementById('popup-modal').style.display = 'block';
+            }
+        
+            function closePopup() {
+                document.getElementById('popup-modal').style.display = 'none';
+            }
+        
+            document.addEventListener("DOMContentLoaded", function () {
+                document.getElementById('popup-modal').style.display = 'none';
+            });
+        
+            function downloadContent(button) {
+                var cardContent = button.closest('.card-content');
+        
+                var plantType = cardContent.querySelector('h2').textContent;
+                var growthTips = cardContent.querySelector('.growth-tips').textContent;
+                var careTips = cardContent.querySelector('.care-tips').textContent;
+                var pesticideSuggestions = cardContent.querySelector('.pesticide-suggestions').textContent;
+                var timestamp = cardContent.querySelector('em').textContent;
+        
+                var textContent = `Plant Type: ${plantType}\nGrowth Tips: ${growthTips}\nCare Tips: ${careTips}\nPesticide Suggestions: ${pesticideSuggestions}\n${timestamp}`;
+        
+                var blob = new Blob([textContent], { type: "text/plain" });
+                var a = document.createElement("a");
+                a.href = URL.createObjectURL(blob);
+                a.download = `${plantType.replace(/\s+/g, '_')}_Details.txt`;
+                a.click();
+            }
+        </script>
+        
+        
+        <!-- Optional: Styling for Popup Modal -->
+        <style>
+            /* Popup modal styling */
+            .popup-modal {
+                display: none;
+                position: fixed;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.4);
+                padding-top: 60px;
+            }
+        
+            .popup-content {
+                background-color: white;
+                margin: 5% auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%;
+                max-width: 500px;
+                text-align: left;
+                position: relative;
+            }
+        
+            /* Close button inside the popup */
+            .close-btn {
+                color: #aaa;
+                font-size: 28px;
+                font-weight: bold;
+                position: absolute;
+                top: 10px;
+                right: 25px;
+                font-family: Arial, sans-serif;
+            }
+        
+            .close-btn:hover,
+            .close-btn:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+        
+            /* Close button at the bottom */
+            .close-modal-btn {
+                background-color: #f44336;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                cursor: pointer;
+                margin-top: 20px;
+            }
+        
+            .close-modal-btn:hover {
+                background-color: #e53935;
+            }
+        
+            /* Optional button styling */
+            .show-btn {
+                margin-top: 10px;
+                padding: 5px 10px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+        
+            .show-btn:hover {
+                background-color: #45a049;
+            }
+        </style>
+        
+        
+        <!-- Optional: Styling for Popup Modal -->
+        <style>
+            /* Popup modal styling */
+            .popup-modal {
+                display: none;
+                position: fixed;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.4);
+                padding-top: 60px;
+            }
+        
+            .popup-content {
+                background-color: white;
+                margin: 5% auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%;
+                max-width: 500px;
+                text-align: left;
+            }
+        
+            .close-btn {
+                color: #aaa;
+                font-size: 28px;
+                font-weight: bold;
+                position: absolute;
+                top: 10px;
+                right: 25px;
+                font-family: Arial, sans-serif;
+            }
+        
+            .close-btn:hover,
+            .close-btn:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+        
+            /* Optional button styling */
+            .show-btn {
+                margin-top: 10px;
+                padding: 5px 10px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+        
+            .show-btn:hover {
+                background-color: #45a049;
+            }
+            /* Example CSS for hidden content */
+.growth-tips, .care-tips, .pesticide-suggestions {
+    display: none;
+}
+
+/* Optional: Styling for the button */
+.show-btn {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.show-btn:hover {
+    background-color: #45a049;
+}
+
+        </style>
+        
+
+
+        
+        
+        
+        <!-- About Start -->
+        <div class="container-xxl">
+            <div class="container px-lg-5">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-5">
+                        <img class="img-fluid wow zoomIn" data-wow-delay="0.5s"  src="{% static 'farmer/img/farmer2.webp' %}" alt="Agri Tech - Connecting Agriculture">
+                    </div>
+                    <div class="col-lg-7 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="section-title position-relative mb-4 pb-4">
+                            <h1 class="mb-2">Explore the World of Agri Tech</h1>
+                        </div>
+                        <p class="mb-4">Welcome to Agri Tech, where innovation meets agriculture. Discover a platform that connects farmers with experts, providing valuable insights and solutions for sustainable and efficient farming practices.</p>
+                        <div class="row g-3">
+                            <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
+                                <div class="bg-light rounded text-center p-4">
+                                    <i class="fa fa-users-cog fa-2x text-primary mb-2"></i>
+                                    <h2 class="mb-1" data-toggle="counter-up">25</h2>
+                                    <p class="mb-0"> professionals ready to assist you</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 wow fadeIn" data-wow-delay="0.3s">
+                                <div class="bg-light rounded text-center p-4">
+                                    <i class="fa fa-users fa-2x text-primary mb-2"></i>
+                                    <h2 class="mb-1" data-toggle="counter-up">200</h2>
+                                    <p class="mb-0">Connect with  farmers and share experiences</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 wow fadeIn" data-wow-delay="0.5s">
+                                <div class="bg-light rounded text-center p-4">
+                                    <i class="fa fa-check fa-2x text-primary mb-2"></i>
+                                    <h2 class="mb-1" data-toggle="counter-up">500</h2>
+                                    <p class="mb-0">Farmers used Experts Advise in this webiste</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            <!-- About End -->
+        </div>
+        <!-- Pricing Start -->
+        <div class="container-xxl py-5">
+            <div class="container px-lg-5">
+                <div class="section-title position-relative text-center mx-auto mb-5 pb-4 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3">Explore Our Agricultural Services</h1>
+                    <p class="mb-1">Our commitment is to provide valuable solutions, ensuring your journey in agriculture is met with knowledge and support.</p>
+                </div>
+                <div class="row gy-5 gx-4">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="position-relative shadow rounded border-top border-5 border-primary">
+                            <div class="d-flex align-items-center justify-content-center position-absolute top-0 start-50 translate-middle bg-primary rounded-circle" style="width: 45px; height: 45px; margin-top: -3px;">
+                                <i class="fa fa-users-cog text-white"></i>
+                            </div>
+                            <div class="text-center border-bottom p-4 pt-5">
+                                <h4 class="fw-bold">Expert Advice</h4>
+                                <p class="mb-0">Connect with experienced agricultural experts for personalized advice on crop management, pest control, and sustainable farming practices.</p>
+                            </div>
+                            <div class="p-4">
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Get insights from  experts</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Personalized recommendations for your farm</p>
+                                <p class="mb-0"><i class="fa fa-check text-primary me-3"></i>Enhance your farming practices</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="position-relative shadow rounded border-top border-5 border-secondary">
+                            <div class="d-flex align-items-center justify-content-center position-absolute top-0 start-50 translate-middle bg-secondary rounded-circle" style="width: 45px; height: 45px; margin-top: -3px;">
+                                <i class="fa fa-comments text-white"></i>
+                            </div>
+                            <div class="text-center border-bottom p-4 pt-5">
+                                <h4 class="fw-bold">Expert Appointments</h4>
+                                <p class="mb-0">Schedule one-on-one appointments with agricultural experts to address specific challenges on your farm.</p>
+                            </div>
+                            <div class="p-4">
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Personalized consultations for your farm</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Tailored solutions for your specific challenges</p>
+                                <p class="mb-0"><i class="fa fa-check text-primary me-3"></i>Get expert guidance on-demand</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="position-relative shadow rounded border-top border-5 border-primary">
+                            <div class="d-flex align-items-center justify-content-center position-absolute top-0 start-50 translate-middle bg-primary rounded-circle" style="width: 45px; height: 45px; margin-top: -3px;">
+                                <i class="fa fa-robot text-white"></i>
+                            </div>
+                            <div class="text-center border-bottom p-4 pt-5">
+                                <h4 class="fw-bold">Chatbot Assistance</h4>
+                                <p class="mb-0">Engage with our chatbot for quick answers and support in multiple languages, making information accessible to all.</p>
+                            </div>
+                            <div class="p-4">
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Instant assistance 24/7</p>
+                                <p class="border-bottom pb-3"><i class="fa fa-check text-primary me-3"></i>Multi-language support</p>
+                                <p class="mb-0"><i class="fa fa-check text-primary me-3"></i>Accessible information at your fingertips</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <!-- Pricing End -->
+        
+        
+        <!-- Comparison Start -->
+        <div class="container-xxl pt-5">
+            <div class="container px-lg-5">
+                <div class="section-title position-relative text-center mx-auto mb-5 pb-4 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3">Expert Consultations VS Chatbot Assistance</h1>
+                    <p class="mb-1">Discover the key differences between personalized expert consultations and quick assistance from our multi-language chatbot. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="row g-5 comparison position-relative">
+                    <div class="col-lg-6 pe-lg-5">
+                        <div class="section-title position-relative mx-auto mb-4 pb-4">
+                            <h3 class="fw-bold mb-0">Expert Consultations</h3>
+                        </div>
+                        <div class="row gy-3 gx-5">
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.1s">
+                                <i class="fa fa-users-cog fa-3x text-primary mb-3"></i>
+                                <h5 class="fw-bold">Personalized Advice</h5>
+                                <p>Connect with experienced agricultural experts for tailored advice on crop management, soil health, and farming practices.</p>
+                            </div>
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+                                <i class="fa fa-calendar-check fa-3x text-primary mb-3"></i>
+                                <h5 class="fw-bold">Scheduled Appointments</h5>
+                                <p>Schedule one-on-one appointments at your convenience to address specific challenges on your farm.</p>
+                            </div>
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.5s">
+                                <i class="fa fa-comments fa-3x text-primary mb-3"></i>
+                                <h5 class="fw-bold">In-Depth Discussions</h5>
+                                <p>Engage in detailed discussions with experts to get comprehensive insights for your farming needs.</p>
+                            </div>
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.7s">
+                                <i class="fa fa-headset fa-3x text-primary mb-3"></i>
+                                <h5 class="fw-bold">24/7 Support</h5>
+                                <p>Access continuous support from our team of experts, ensuring your farming journey is well-guided.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 ps-lg-5">
+                        <div class="section-title position-relative mx-auto mb-4 pb-4">
+                            <h3 class="fw-bold mb-0">Chatbot Assistance</h3>
+                        </div>
+                        <div class="row gy-3 gx-5">
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.1s">
+                                <i class="fa fa-robot fa-3x text-secondary mb-3"></i>
+                                <h5 class="fw-bold">Instant Answers</h5>
+                                <p>Engage with our chatbot for quick answers and support in multiple languages, making information accessible at any time.</p>
+                            </div>
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
+                                <i class="fa fa-globe fa-3x text-secondary mb-3"></i>
+                                <h5 class="fw-bold">Multi-Language Support</h5>
+                                <p>Get assistance in your preferred language, ensuring that our services are accessible to a global audience.</p>
+                            </div>
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.5s">
+                                <i class="fa fa-clock fa-3x text-secondary mb-3"></i>
+                                <h5 class="fw-bold">Instant Assistance</h5>
+                                <p>Receive instant assistance 24/7, allowing you to quickly find information and solutions for your farming queries.</p>
+                            </div>
+                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.7s">
+                                <i class="fa fa-check-circle fa-3x text-secondary mb-3"></i>
+                                <h5 class="fw-bold">Accessible Information</h5>
+                                <p>Access valuable information at your fingertips, making essential details readily available for your farming needs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Comparison Start -->
+        
+       
+        
+        
+        <!-- User Information Start -->
+        <div class="container-xxl py-5">
+            <div class="container px-lg-5">
+                <div class="section-title position-relative text-center mx-auto mb-5 pb-4 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <h1 class="mb-3">User Roles in Our Project</h1>
+                    <p class="mb-1">Explore the different roles in our project and how they contribute to the agricultural community. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="team-item border-top border-5 border-primary rounded shadow overflow-hidden h-100">
+                            <div class="text-center p-4">
+                                <i class="fa fa-user fa-3x text-primary mb-4"></i>
+                                <h5 class="fw-bold mb-1">Farmers</h5>
+                                <p>Connect with experts, schedule appointments, and access valuable resources to optimize your farming practices.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="team-item border-top border-5 border-primary rounded shadow overflow-hidden h-100">
+                            <div class="text-center p-4">
+                                <i class="fa fa-user-cog fa-3x text-primary mb-4"></i>
+                                <h5 class="fw-bold mb-1">Admins</h5>
+                                <p>Manage user interactions, ensure smooth platform operations, and address any technical or user-related issues.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="team-item border-top border-5 border-primary rounded shadow overflow-hidden h-100">
+                            <div class="text-center p-4">
+                                <i class="fa fa-users fa-3x text-primary mb-4"></i>
+                                <h5 class="fw-bold mb-1">Experts</h5>
+                                <p>Provide personalized advice, engage in discussions, and contribute expertise to support farmers in their agricultural journey.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                        <div class="team-item border-top border-5 border-primary rounded shadow overflow-hidden h-100">
+                            <div class="text-center p-4">
+                                <i class="fa fa-building fa-3x text-primary mb-4"></i>
+                                <h5 class="fw-bold mb-1">Government Officers</h5>
+                                <p>Access agricultural data, monitor community activities, and collaborate with experts to support and regulate farming practices.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- User Information End -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        {% if messages %}              
+        {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+        <script>swal({
+            title: "Warning!",
+            text: "{{message}}",
+            icon: "warning",
+            button: "OK",
+        });
+    </script>
+    
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+    <script>swal({
+        title: "Info :)",
+        text: "{{message}}",
+        icon: "info",
+        button: "OK",
+    });
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+<script>swal({
+    title: "Error :)",
+    text: "{{message}}",
+    icon: "error",
+    button: "OK",
+});
+</script>
+{% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+<script>swal({
+    title: "Success :)",
+    text: "{{message}}",
+    icon: "success",
+    button: "OK",
+});
+</script>
+{% endif %}              
+{% endfor %} 
+{% endif %}
+
+
+<!-- Footer Start -->
+<div class="container-fluid bg-primary text-white footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5 px-lg-5">
+        <div class="row gy-5 gx-4 pt-5">
+            <div class="col-12">
+                <h2 class="fw-bold text-white mb-4">Agri Tech</h2>
+                
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="row gy-5 g-4">
+                    <div class="col-md-6">
+                        <h5 class="fw-bold text-white mb-4">Shortcuts</h5>
+                        <a class="btn btn-link" href="{% url 'dashboard' %}">Dashboard</a>
+                        <a class="btn btn-link" href="{% url 'cropdisease' %}">Crop Disease Detection</a>
+                        <a class="btn btn-link" href="{% url 'chatbot' %}">Chatbot</a>
+                        
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="fw-bold text-white mb-4">Useful Links</h5>
+                        <a class="btn btn-link" href="{% url 'farmer_feedback' %}">Feedback</a>
+                        <a class="btn btn-link" href="{% url 'profile' %}">My Profile</a>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <h5 class="fw-bold text-white mb-4">Get In Touch</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i> ****** ******</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i> ****** ******</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@Agri Tech.in</p>
+                
+            </div>
+            <div class="col-md-6 col-lg-3 mt-lg-n5">
+                <div class="bg-light rounded" style="padding: 30px;">
+                    <img class="img-fluid animated zoomIn" src="{% static 'farmer/img/farmer3.webp' %}" alt="Agri Tech Hero Image">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container px-lg-5">
+        <div class="copyright">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="#">Agri Tech</a>, All Right Reserved. 
+                    
+                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                    Designed By <a class="border-bottom" href="https://Agri Tech.in" target="_blank">Agri Tech</a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-secondary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+</div>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'farmer/lib/wow/wow.min.js' %}"></script>
+
+<script src="{% static 'farmer/lib/easing/easing.min.js' %}"></script>
+
+<script src="{% static 'farmer/lib/waypoints/waypoints.min.js' %}"></script>
+
+<script src="{% static 'farmer/lib/counterup/counterup.min.js' %}"></script>
+
+<script src="{% static 'farmer/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+
+<!-- Template Javascript -->
+<script src="{% static 'farmer/js/main.js' %}"></script>
+
+</body>
+
+</html>
